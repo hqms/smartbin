@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>New Bin</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Add new SmartBin</h1>
+            <a th:href="@{/bin/new}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                    class="fas fa-save fa-sm text-white-50"></i> Save</a>
+        </div>
+
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Location</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="mb-3 form-check">
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+
+                <input type="text" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Description</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</body>
+</html>
