@@ -37,38 +37,27 @@
                         <th>Location</th>
                         <th>Description</th>
                         <th>Status</th>
-                        <th>Bins</th>
+                        <th>Action</th>
 
                     </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>122AB-DE1212-EE225</td>
-                            <td><a href="#">Location</a> </td>
-                            <td>Hibah Suku Dinas Kebersihan Jakarta Timur 2023</td>
-                            <td >
-                                <i class="fa fa-check"></i> Online
-                            </td>
-                            <td>3 Bins</td>
-                        </tr>
-                        <tr>
-                            <td>122AB-DE1212-EE225</td>
-                            <td><a href="#">Location</a> </td>
-                            <td>Hibah Suku Dinas Kebersihan Jakarta Timur 2023</td>
-                            <td >
-                                <i class="fa fa-check"></i> Online
-                            </td>
-                            <td>3 Bins</td>
-                        </tr>
-                        <tr>
-                            <td>122AB-DE1212-EE225</td>
-                            <td><a href="#">Location</a> </td>
-                            <td>Hibah Suku Dinas Kebersihan Jakarta Timur 2023</td>
-                            <td >
-                                <i class="fa fa-check"></i> Online
-                            </td>
-                            <td>3 Bins</td>
-                        </tr>
+
+                       <tr th:each="bin: ${bins}">
+                           <td th:text="${bin[0]}"></td>
+                           <td >
+                               <div th:text="${bin[1]}" />
+                               <div th:text="${bin[2]}" />
+                           </td>
+                           <td th:text="${bin[3]}"></td>
+                           <td><i class="fa fa-check"></i> Online</td>
+                           <td>
+                               <a th:href="@{/bin/edit/} + ${bin[0]}">Edit</a> |
+                               <a th:href="@{/bin/delete/} + ${bin[0]}"
+                                    onclick="javascript:return confirm('Apakah anda yakin akan menghapus data ini?')"
+                               >Delete</a>
+                           </td>
+                       </tr>
                     </tbody>
                 </table>
             </div>

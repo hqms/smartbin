@@ -2,23 +2,36 @@ package com.hqm.smartbin.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-public class Bin {
+@Table(name = "bin")
+@NamedQuery(name = "BinFindAll", query = "select id, latitude, longitude, description from Bin")
+public class Bin  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @Column
-    private long latitude;
+    private String latitude;
 
     @Column
-    private long longitude;
+    private String longitude;
 
     @Column
     private String description;
+
+    public Bin() {
+    }
+
+    public Bin(String latitude, String longitude, String description) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.description = description;
+    }
 
     public UUID getId() {
         return id;
@@ -28,19 +41,19 @@ public class Bin {
         this.id = id;
     }
 
-    public long getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 

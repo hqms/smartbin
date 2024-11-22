@@ -13,18 +13,18 @@
                     class="fas fa-save fa-sm text-white-50"></i> Save</a>
         </div>
 
-        <form>
+        <form th:action="@{/bin/save}" method="post">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Location</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <label for="latitude" class="form-label">Location</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="latitude"  placeholder="Lat"  name="latitude" />
+                    <input type="text" class="form-control" id="longitude" placeholder="Long" name="longitude" />
+                </div>
             </div>
 
-            <div class="mb-3 form-check">
-                <label for="exampleInputEmail1" class="form-label">Description</label>
-
-                <input type="text" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Description</label>
+            <div class="mb-3 ">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
