@@ -8,25 +8,26 @@
     <div layout:fragment="content">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Add new SmartBin</h1>
+            <h1 class="h3 mb-0 text-gray-800"><span th:text="${action} == 'edit' ? 'Edit' : 'Add new '" /> SmartBin</h1>
             <a th:href="@{/bin/new}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
                     class="fas fa-save fa-sm text-white-50"></i> Save</a>
         </div>
 
-        <form th:action="@{/bin/save}" method="post">
+        <form th:action="${action} == 'edit'? @{/bin/update} : @{/bin/save}" method="post">
             <div class="mb-3">
                 <label for="latitude" class="form-label">Location</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="latitude"  placeholder="Lat"  name="latitude" />
-                    <input type="text" class="form-control" id="longitude" placeholder="Long" name="longitude" />
+                    <input type="text" class="form-control" id="latitude"  placeholder="Lat"  name="latitude" th:value="${bin.latitude}" />
+                    <input type="text" class="form-control" id="longitude" placeholder="Long" name="longitude" th:value="${bin.longitude}" />
                 </div>
             </div>
 
             <div class="mb-3 ">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description">
+                <input type="text" class="form-control" id="description" name="description" th:value="${bin.description}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="hidden" th:if="${action} == 'edit'" th:value="${bin.id}" name="id">
         </form>
 
     </div>

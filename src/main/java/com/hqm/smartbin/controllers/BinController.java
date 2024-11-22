@@ -32,18 +32,31 @@ public class BinController {
     }
 
     @GetMapping(value = "/new")
-    public String baru(){
-        return "bin-new" ;
+    public String baru(Model model){
+        Bin bin = new Bin();
+
+        model.addAttribute("bin", bin);
+        model.addAttribute("action", "new");
+
+        return "bin-form" ;
     }
 
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public RedirectView save(Bin bin){
-
         et.begin();
         em.persist(bin);
         et.commit();
 
         return new RedirectView("/bin");
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    public String edit(@PathVariable UUID id, Model model){
+        Bin bin = em.find(Bin.class, id);
+        model.addAttribute("bin", bin);
+        model.addAttribute("action", "edit");
+
+        return  "bin-form";
     }
 
     @GetMapping(value = "/delete/{id}")
@@ -55,5 +68,18 @@ public class BinController {
         et.commit();
 
         return new RedirectView("/bin");
+    }
+
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public RedirectView update(Bin bin){
+        Bin _bin = em.find(Bin.class, bin.getId());
+
+        et.begin();
+        _bin.setLatitude(bin.getLatitude());
+        _bin.setLongitude(bin.getLongitude());
+        _bin.setDescription(bin.getDescription());
+        et.commit();
+        return new RedirectView("/bin");
+
     }
 }
